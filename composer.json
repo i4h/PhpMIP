@@ -1,6 +1,7 @@
 {
     "name": "i4h/phpmip",
     "description": "A PHP Class to Create and Output Mixed-Integer Programs",
+    "license": "MIT",    
     "require": {
     },
     "keywords": ["php","optimization","mixed-integer"],
