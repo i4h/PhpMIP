@@ -1,11 +1,11 @@
 <?php
 /**
- * Formulate a knapsack problem using PhpMIP
+ * Formulate a knapsack problem using phpmip
   */
 
 require_once('bootstrap.php');
 
-$mip = new \vendor\i4h\PhpMIP\MIP();
+$mip = new \vendor\i4h\phpmip\MIP();
 
 /* Create the set of items */
 $indexArray = range(1,10);
@@ -27,7 +27,7 @@ $W = rand(5,10);
 $mip->addSet('i', $indexArray);
 
 /* Variable x */
-$mip->addVariable("x", \vendor\i4h\PhpMIP\MIPvariable::TYPE_BINARY, 'i');
+$mip->addVariable("x", \vendor\i4h\phpmip\MIPvariable::TYPE_BINARY, 'i');
 
 /* Objective */
 foreach ($indexArray as $idx) {
@@ -48,7 +48,7 @@ echo "--------------------------------\n";
 echo $mip;
 
 /* Output in LP format */
-$writer = new \vendor\i4h\PhpMIP\LpWriter();
+$writer = new \vendor\i4h\phpmip\LpWriter();
 $writer->write($mip);
 echo "\n";
 echo "\n";

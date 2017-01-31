@@ -12,7 +12,7 @@ your own writer classes.
 The package can be installed into your project via composer:
 
 ````
- $ php composer.phar require i4h/PhpMIP "*"
+ $ php composer.phar require i4h/php-mip "*"
 ````
  
 # Usage

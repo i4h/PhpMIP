@@ -1,6 +1,6 @@
 <?php
 
-namespace vendor\i4h\PhpMIP;
+namespace vendor\i4h\phpmip;
 
 /**
  * This is the base class for MIP writers

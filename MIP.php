@@ -1,5 +1,5 @@
 <?php
-namespace vendor\i4h\PhpMIP;
+namespace vendor\i4h\phpmip;
 
 /**
  * This class represents a mixed-integer program

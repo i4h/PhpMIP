@@ -1,6 +1,6 @@
 <?php
 /**
- * Formulate the following trivial LP using PhpMIP:
+ * Formulate the following trivial LP using phpmip:
  *
  *  minimize    \f$x + y\f$
  *  subject to  \f$ x + y \le 1  \f$       (1)
@@ -10,14 +10,14 @@
 
 require_once('bootstrap.php');
 
-$mip = new \vendor\i4h\PhpMIP\MIP();
+$mip = new \vendor\i4h\phpmip\MIP();
 
 /* Variable x */
-$mip->addVariable("x", \vendor\i4h\PhpMIP\MIPvariable::TYPE_CONTINUOUS);
+$mip->addVariable("x", \vendor\i4h\phpmip\MIPvariable::TYPE_CONTINUOUS);
 $mip->setVariableLB("x", 0);
 
 /* Variable y */
-$mip->addVariable("y", \vendor\i4h\PhpMIP\MIPvariable::TYPE_CONTINUOUS);
+$mip->addVariable("y", \vendor\i4h\phpmip\MIPvariable::TYPE_CONTINUOUS);
 $mip->setVariableLB("y", 0);
 
 /* Objective */
@@ -39,7 +39,7 @@ echo "--------------------------------\n";
 echo $mip;
 
 /* Output in LP format */
-$writer = new \vendor\i4h\PhpMIP\LpWriter();
+$writer = new \vendor\i4h\phpmip\LpWriter();
 $writer->write($mip);
 echo "\n";
 echo "\n";
