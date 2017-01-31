@@ -1,0 +1,20 @@
+{
+    "name": "i4h/PhpMIP",
+    "description": "A PHP Class to Create and Output Mixed-Integer Programs",
+    "require": {
+    },
+    "keywords": ["php","optimization","mixed-integer"],
+    "homepage": "https://github.com/i4h/PhpMIP",
+    "authors": [
+        {
+            "name": "Ingmar Vierhaus",
+            "email": "mail@ingmar-vierhaus.de",
+            "role": "Developer"
+        },
+        {
+            "name": "Fabian Gnegel",
+            "email": "gnegelf@hsu-hh.de",
+            "role": "Developer"
+        }
+    ]
+}
