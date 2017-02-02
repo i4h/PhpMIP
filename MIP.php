@@ -118,6 +118,7 @@ class MIP extends Object
      * corresponding set index must be given
      */
 	public function setVariableLB($name, $bound, $setIdx = null) {
+		$this->checkVars([['name'=>$name, 'setIdx'=>$setIdx]]);
 		if ($setIdx === null)
 			$var = $this->_variables[$name];
 		else
@@ -136,6 +137,7 @@ class MIP extends Object
      */
 
 	public function setVariableUB($name, $bound, $setIdx = null) {
+		$this->checkVars([['name'=>$name, 'setIdx'=>$setIdx]]);
 		if ($setIdx === null)
 			$var = $this->_variables[$name];
 		else
@@ -150,6 +152,7 @@ class MIP extends Object
 	 * @param $rhs value
 	 */
 	public function addConstraint(Array $vars, $lhs, $rhs) {
+		$this->checkVars($vars);
 		$this->_constraints[] = new MIPconstraint(MIPconstraint::TYPE_DEFAULT, $vars, $lhs, $rhs);
 	}
 	
@@ -159,6 +162,7 @@ class MIP extends Object
 	 * @param $bound number
 	 */
 	public function addConstraintGE(Array $vars, $bound) {
+		$this->checkVars($vars);
 		$this->_constraints[] = new MIPconstraint(MIPconstraint::TYPE_GE, $vars, $bound);
 	}
 	
@@ -167,10 +171,11 @@ class MIP extends Object
      * @param $vars the variables of the constraint with their coefficients
 	 * @param $bound number
 	 */
-	
 	public function addConstraintLE($vars, $bound) {
+		$this->checkVars($vars);
 		$this->_constraints[] = new MIPconstraint(MIPconstraint::TYPE_LE, $vars, $bound);
 	}
+
 	/**
 	 * adds constraint of type $value <= $vars <= $value
      * @param $vars the variables of the constraint with their coefficients
@@ -188,6 +193,7 @@ class MIP extends Object
      */
 	public function addObjectiveCoefficient($var, $setValue = null, $coefficient = 1) 
 	{
+		$this->checkVars([['name'=>$var, 'setIdx'=>$setValue]]);
 		if ($setValue === null)
 			$this->_objectiveCoefficients[$var] = $coefficient;
 		else 
@@ -300,5 +306,30 @@ class MIP extends Object
 			}
 		}
 		return true;
+	}
+
+	/** Check that vars exist
+	 *
+	 * Checks that the variables described in the vars vector
+	 * were previously added to the problem
+	 *
+	 * @param array $vars
+	 * @throws \Exception
+	 */
+	public function checkVars(array $vars) {
+		foreach($vars as $var) {
+			/* Var array should exist */
+			if (!isset($this->_variables[$var['name']]))
+				throw new \Exception("Variable ".$var['name']." does not exist in MIP.");
+
+			/* Check if var is on set */
+			if (isset($var['setIdx'])) {
+				if (!is_array($this->_variables[$var['name']]) || !isset($this->_variables[$var['name']][$var['setIdx']]))
+ 					throw new \Exception("Variable ".$var['name']." does not exist in MIP.");
+			} else { /* Check if var is not on set */
+				if (is_array($this->_variables[$var['name']]))
+ 					throw new \Exception("No set index given for variable ".$var['name'].".");
+			}
+		}
 	}
 }
