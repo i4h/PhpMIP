@@ -329,7 +329,7 @@ class MIP extends Object
  					throw new \Exception("Variable ".$var['name']." does not exist in MIP.");
 			} else { /* Check if var is not on set */
 				if (is_array($this->_variables[$var['name']]))
- 					throw new \Exception("No set index given for variable ".$var['name'].".");
+				    throw new \Exception("Set index ".$var['setIdx']." is not defined in variable set ".$var['name']);
 			}
 		}
 	}
