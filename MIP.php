@@ -182,6 +182,7 @@ class MIP extends Object
 	 * @param $value number
 	 */
 	public function addConstraintEQ($vars, $value) {
+        $this->checkVars($vars);
 		$this->_constraints[] = new MIPconstraint(MIPconstraint::TYPE_EQ, $vars, $value);
 	}
 
